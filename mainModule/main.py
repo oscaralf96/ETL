@@ -2,7 +2,7 @@
 import sqlalchemy, pandas as pd, numpy as np
 
 import settings
-from psycopg2_orm import *
+from psycopg2_orm import Orm
 
 
 def get_engine(engine, driver, user, password, host, port, database):
@@ -38,7 +38,10 @@ def run_sqlalchemy():
 
 
 def run():
-    postgres_db_connect()
+    orm = Orm(settings.Databases.get("ETL"))
+    orm.connect()
+    orm.select_all(schema='platzi', table='alumnos', limit=2)
+    orm.disconnect()
 
 
 if __name__ == '__main__':
