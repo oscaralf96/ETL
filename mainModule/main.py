@@ -40,7 +40,7 @@ def run_sqlalchemy():
 def run():
     orm = Orm(settings.Databases.get("ETL"))
     orm.connect()
-    orm.select_all(schema='platzi', table='alumnos', limit=2)
+    orm.select_all(schema='platzi', table='alumnos')
     orm.disconnect()
 
 

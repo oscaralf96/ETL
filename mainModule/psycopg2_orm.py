@@ -49,7 +49,7 @@ class Orm(object):
 
     def select_all(self, schema, table, **kwargs):
         self.__get_cursor()
-        if kwargs["limit"]:
+        if kwargs:
             self.__cursor.execute(f"SELECT * FROM {schema}.{table} LIMIT {kwargs['limit']}")
         else:
             self.__cursor.execute(f"SELECT * FROM {schema}.{table}")
