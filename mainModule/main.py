@@ -40,7 +40,15 @@ def run_sqlalchemy():
 def run():
     orm = Orm(settings.Databases.get("ETL"))
     orm.connect()
-    orm.select_all(schema='platzi', table='alumnos')
+    orm.get_version()
+    print("select")
+    orm.select(schema='platzi', table='alumnos', orderby="nombre", limit=2)
+    print("where")
+    orm.filter(schema="platzi", table="alumnos", column="id", search="3", orderby="nombre")
+    print("like")
+    orm.filter(schema="platzi", table="alumnos", column="nombre", like="H%", orderby="nombre", limit=2)
+    print("not like")
+    orm.filter(schema="platzi", table="alumnos", column="nombre", notlike="H%", orderby="nombre", limit=2)
     orm.disconnect()
 
 
