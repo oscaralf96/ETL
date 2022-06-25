@@ -1,11 +1,14 @@
 # Utilities
 import psycopg2
+import platform
 
 
 class Orm(object):
 
     def __init__(self, connection_params):
         self.__params = connection_params  # settings.Databases.get("ETL")
+        if platform.system() == "Linux":
+            self.__params["database"] = self.__params["database"].lower()
         self.__connection = None
         self.__cursor = None
 
