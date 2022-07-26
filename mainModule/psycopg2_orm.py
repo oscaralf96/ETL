@@ -89,4 +89,4 @@ class Orm(object):
         finally:
             self.__connection.rollback()
             self.__close_cursor()
-            
+
